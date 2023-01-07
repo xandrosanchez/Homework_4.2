@@ -2,7 +2,6 @@ package ru.hogwarts.school.service;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ru.hogwarts.school.model.Avatar;
@@ -83,13 +82,9 @@ public class AvatarService {
         return avatarRepository.findByStudentId(studentId).orElse(new Avatar());
     }
 
-    public ResponseEntity<Collection<Avatar>> findByPagination(int page, int size) {
+    public Collection<Avatar> findByPagination(int page, int size) {
         PageRequest pageRequest = PageRequest.of(page - 1, size);
-        Collection<Avatar> avatars = avatarRepository.findAll(pageRequest).getContent();
-        if (avatars.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(avatars);
+        return avatarRepository.findAll(pageRequest).getContent();
     }
 
     private String getExtension(String fileName) {

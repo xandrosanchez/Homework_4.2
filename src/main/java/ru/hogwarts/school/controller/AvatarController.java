@@ -63,7 +63,7 @@ public class AvatarController {
     public ResponseEntity<Collection<Avatar>> findByPagination(
             @RequestParam Integer page,
             @RequestParam Integer size) {
-        return avatarService.findByPagination(page, size);
+        return ResponseEntity.ok(avatarService.findByPagination(page,size));
     }
 
 
