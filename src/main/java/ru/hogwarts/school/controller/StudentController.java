@@ -87,4 +87,19 @@ public class StudentController {
     public ResponseEntity<Collection<Student>> get5LastStudents() {
         return ResponseEntity.ok(studentService.get5LastStudents());
     }
+
+    @GetMapping("/name-starting-with-A")
+    public ResponseEntity<Collection<String>> getStudentsWithNameStartingWithA(){
+        return ResponseEntity.ok(studentService.getStudentsWithNameStartingWithA());
+    }
+
+    @GetMapping("/names")
+    public void echoAllStudentNames() {
+        studentService.getAllStudentNames();
+    }
+
+    @GetMapping("/names-sync")
+    public void echoAllStudentNamesSync() {
+        studentService.getAllStudentNamesSync();
+    }
 }
